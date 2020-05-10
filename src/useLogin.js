@@ -19,9 +19,12 @@ const useLogin = ({onSuccess, onFailure, loginUrl = '/login', loginOptions = '/l
           .then((data) => {
             const publicKeyCredential = preparePublicKeyCredentials(data);
             fetchEndpoint(publicKeyCredential, loginUrl)
-              .then((response) => {
-                onSuccess(response);
-              })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((json) => {
+                    onSuccess(json);
+                })
               .catch((err) => {
                 onFailure(err);
               })

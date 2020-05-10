@@ -20,9 +20,12 @@ const useRegistration = ({onSuccess, onFailure, registerUrl = '/register', regis
             const publicKeyCredential = preparePublicKeyCredentials(data);
             console.log(publicKeyCredential);
             fetchEndpoint(publicKeyCredential, registerUrl)
-              .then((response) => {
-                onSuccess(response);
-              })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((json) => {
+                    onSuccess(json);
+                })
               .catch((err) => {
                 onFailure(err);
               })
