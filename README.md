@@ -4,9 +4,41 @@ Webauthn Helper
 This package contains helper functions to handle Webauthn registration and authentication.
 It is primarily designed to be used with the Web-Auth Framework from Spomky-Labs.
 
-# Documentation
+# Installation
 
-[TO BE WRITTEN]
+With Yarn:
+
+```sh
+yarn add webauthn-helper
+```
+# Usage
+
+```js
+import {useRegistration, useLogin} from 'webauthn-helper';
+
+const register = useRegistration({
+    onSuccess: ()=> console.log('Registration success'),
+    onFailure: () => console.log('Registration failure'),
+    registerUrl: '/api/register',
+    registerOptions: '/api/register/options'
+});
+
+const login = useLogin({
+    onSuccess: ()=> console.log('Login success'),
+    onFailure: () => console.log('Login failure'),
+    loginUrl: '/api/login',
+    loginOptions: '/api/login/options'
+});
+
+register({
+    username: 'FOO4',
+     displayName: 'baR'
+});
+
+login({
+    username: 'FOO4'
+});
+```
 
 # Support
 
