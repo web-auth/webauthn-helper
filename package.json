@@ -1,0 +1,22 @@
+{
+  "name": "webauthn-helper",
+  "version": "0.0.2",
+  "description": "JS functions to ease the use of the Spomky-Labs library and Symfony bundle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/web-auth/webauthn-helper.git"
+  },
+  "keywords": [
+    "webauthn"
+  ],
+  "author": "Spomky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/web-auth/webauthn-helper/issues"
+  },
+  "homepage": "https://github.com/web-auth/webauthn-helper#readme"
+}
