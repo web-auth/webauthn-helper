@@ -1,42 +1,20 @@
 import {
-  fetchEndpoint,
-  preparePublicKeyCredentials,
-  preparePublicKeyOptions,
+    fetchEndpoint,
+    preparePublicKeyCredentials,
+    preparePublicKeyOptions,
 } from './common';
 
-const useRegistration = ({onSuccess, onFailure, registerUrl = '/register', registerOptions = '/register/options'}) => {
-  return (data) => {
-    fetchEndpoint(data, registerOptions)
-      .then(response => {
-        return response.json();
-      })
-      .then(json => {
-        return preparePublicKeyOptions(json)
-      })
-      .then(publicKey => {
-        navigator.credentials
-          .create({publicKey})
-          .then((data) => {
-            const publicKeyCredential = preparePublicKeyCredentials(data);
-            console.log(publicKeyCredential);
-            fetchEndpoint(publicKeyCredential, registerUrl)
-                .then((response) => {
-                    return response.json();
-                })
-                .then((json) => {
-                    onSuccess(json);
-                })
-              .catch((err) => {
-                onFailure(err);
-              })
-            ;
-          })
-          .catch((err) => {
-            onFailure(err);
-          })
-      })
-      .catch(err => onFailure(err))
-  };
-}
+const useRegistration = ({actionUrl = '/register', optionsUrl = '/register/options'}) => {
+    return async (data) => {
+        const optionsResponse = await fetchEndpoint(data, optionsUrl);
+        const json = await optionsResponse.json();
+        const publicKey = preparePublicKeyOptions(json);
+        const credentials = await navigator.credentials.create({publicKey});
+        const publicKeyCredential = preparePublicKeyCredentials(credentials);
+        const actionResponse = await fetchEndpoint(publicKeyCredential, actionUrl);
+
+        return await actionResponse.json();
+    };
+};
 
 export default useRegistration;

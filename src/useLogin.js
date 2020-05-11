@@ -1,41 +1,20 @@
 import {
-  fetchEndpoint,
-  preparePublicKeyCredentials,
-  preparePublicKeyOptions,
+    fetchEndpoint,
+    preparePublicKeyCredentials,
+    preparePublicKeyOptions,
 } from './common';
 
-const useLogin = ({onSuccess, onFailure, loginUrl = '/login', loginOptions = '/login/options'}) => {
-  return (data) => {
-    fetchEndpoint(data, loginOptions)
-      .then(response => {
-        return response.json();
-      })
-      .then(json => {
-        return preparePublicKeyOptions(json)
-      })
-      .then(publicKey => {
-        navigator.credentials
-          .get({publicKey})
-          .then((data) => {
-            const publicKeyCredential = preparePublicKeyCredentials(data);
-            fetchEndpoint(publicKeyCredential, loginUrl)
-                .then((response) => {
-                    return response.json();
-                })
-                .then((json) => {
-                    onSuccess(json);
-                })
-              .catch((err) => {
-                onFailure(err);
-              })
-            ;
-          })
-          .catch((err) => {
-            onFailure(err);
-          })
-      })
-      .catch(err => onFailure(err))
-  };
-}
+const useLogin = ({actionUrl = '/login', optionsUrl = '/login/options'}) => {
+    return async (data) => {
+        const optionsResponse = await fetchEndpoint(data, optionsUrl);
+        const json = await optionsResponse.json();
+        const publicKey = preparePublicKeyOptions(json);
+        const credentials = await navigator.credentials.get({publicKey});
+        const publicKeyCredential = preparePublicKeyCredentials(credentials);
+        const actionResponse = await fetchEndpoint(publicKeyCredential, actionUrl);
+
+        return await actionResponse.json();
+    };
+};
 
 export default useLogin;
