@@ -14,30 +14,35 @@ yarn add webauthn-helper
 # Usage
 
 ```js
+// Import the tool(s) ou need
 import {useRegistration, useLogin} from 'webauthn-helper';
 
+// We want to register new authenticators
 const register = useRegistration({
-    onSuccess: ()=> console.log('Registration success'),
-    onFailure: () => console.log('Registration failure'),
-    registerUrl: '/api/register',
-    registerOptions: '/api/register/options'
-});
-
-const login = useLogin({
-    onSuccess: ()=> console.log('Login success'),
-    onFailure: () => console.log('Login failure'),
-    loginUrl: '/api/login',
-    loginOptions: '/api/login/options'
+    actionUrl: '/api/register',
+    optionsUrl: '/api/register/options'
 });
 
 register({
     username: 'FOO4',
      displayName: 'baR'
+})
+    .then((response)=> console.log('Registration success'))
+    .catch((error)=> console.log('Registration failure'))
+;
+
+// We want to authenticate a user
+const login = useLogin({
+    loginUrl: '/api/login',
+    loginOptions: '/api/login/options'
 });
 
 login({
     username: 'FOO4'
-});
+})
+    .then((response)=> console.log('Login success'))
+    .catch((error)=> console.log('Login failure'))
+;
 ```
 
 # Support
