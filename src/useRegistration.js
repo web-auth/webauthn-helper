@@ -4,7 +4,7 @@ import {
     preparePublicKeyOptions,
 } from './common';
 
-const useRegistration = ({actionUrl = '/register', optionsUrl = '/register/options'}) => {
+const useRegistration = ({actionUrl = '/register', optionsUrl = '/register/options', headers = {}}) => {
     return async (data) => {
         const optionsResponse = await fetchEndpoint(data, optionsUrl);
         const json = await optionsResponse.json();
