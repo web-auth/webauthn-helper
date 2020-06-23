@@ -4,8 +4,8 @@ import {
     preparePublicKeyOptions,
 } from './common';
 
-const useLogin = ({actionUrl = '/login', optionsUrl = '/login/options', headers = {}}) => {
-    return async (data) => {
+const useLogin = ({actionUrl = '/login', optionsUrl = '/login/options'}) => {
+    return async (data, headers = {}) => {
         const optionsResponse = await fetchEndpoint(data, optionsUrl);
         const json = await optionsResponse.json();
         const publicKey = preparePublicKeyOptions(json);
