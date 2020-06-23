@@ -1,14 +1,14 @@
 // Predefined fetch function
-export const fetchEndpoint = (data, url) => {
+export const fetchEndpoint = (data, url, headers = {}) => {
   return fetch(
       url,
       {
         method: 'POST',
         credentials: 'same-origin',
-        headers: {
+        headers: Object.assign({
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-        },
+        }, headers),
         body: JSON.stringify(data),
       }
   );
