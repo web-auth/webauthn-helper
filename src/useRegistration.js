@@ -11,7 +11,7 @@ const useRegistration = ({actionUrl = '/register', optionsUrl = '/register/optio
         const publicKey = preparePublicKeyOptions(json);
         const credentials = await navigator.credentials.create({publicKey});
         const publicKeyCredential = preparePublicKeyCredentials(credentials);
-        const actionResponse = await fetchEndpoint(publicKeyCredential, actionUrl);
+        const actionResponse = await fetchEndpoint(publicKeyCredential, actionUrl, headers);
 
         return await actionResponse.json();
     };
