@@ -1,13 +1,15 @@
 // Predefined fetch function
-export const fetchEndpoint = (data, url) => {
+export const fetchEndpoint = (data, url, header) => {
   return fetch(
       url,
       {
         method: 'POST',
         credentials: 'same-origin',
+        redirect: 'error',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
+          ...header
         },
         body: JSON.stringify(data),
       }
@@ -68,8 +70,6 @@ export const preparePublicKeyOptions = publicKey => {
     );
   }
 
-  /*publicKey.challenge = Uint8Array.from(
-      window.atob(publicKey.challenge), c => c.charCodeAt(0));*/
   if (publicKey.allowCredentials !== undefined) {
     publicKey.allowCredentials = publicKey.allowCredentials.map(
         data => {
