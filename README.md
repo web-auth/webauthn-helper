@@ -9,7 +9,7 @@ It is primarily designed to be used with the Web-Auth Framework from Spomky-Labs
 With Yarn:
 
 ```sh
-yarn add webauthn-helper
+yarn add @web-auth/webauthn-helper
 ```
 # Usage
 
@@ -17,7 +17,7 @@ yarn add webauthn-helper
 
 ```js
 // Import the tool(s) ou need
-import {useRegistration} from 'webauthn-helper';
+import {useRegistration} from '@web-auth/webauthn-helper';
 
 // We want to register new authenticators
 const register = useRegistration({
@@ -37,7 +37,7 @@ register({
 ## Authentication
 
 ```js
-import {useLogin} from 'webauthn-helper';
+import {useLogin} from '@web-auth/webauthn-helper';
 
 const login = useLogin({
     loginUrl: '/api/login',
@@ -57,7 +57,7 @@ login({
 For both `useLogin` and `useRegistration` methods, you can add custom header parameters.
 
 ```js
-import {useLogin} from 'webauthn-helper';
+import {useLogin} from '@web-auth/webauthn-helper';
 
 const login = useLogin({
     loginUrl: '/api/login',
