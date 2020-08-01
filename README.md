@@ -13,9 +13,11 @@ yarn add webauthn-helper
 ```
 # Usage
 
+## Registration
+
 ```js
 // Import the tool(s) ou need
-import {useRegistration, useLogin} from 'webauthn-helper';
+import {useRegistration} from 'webauthn-helper';
 
 // We want to register new authenticators
 const register = useRegistration({
@@ -30,8 +32,13 @@ register({
     .then((response)=> console.log('Registration success'))
     .catch((error)=> console.log('Registration failure'))
 ;
+```
 
-// We want to authenticate a user
+## Authentication
+
+```js
+import {useLogin} from 'webauthn-helper';
+
 const login = useLogin({
     loginUrl: '/api/login',
     loginOptions: '/api/login/options'
@@ -45,11 +52,32 @@ login({
 ;
 ```
 
+## Additional Header Parameters
+
+For both `useLogin` and `useRegistration` methods, you can add custom header parameters.
+
+```js
+import {useLogin} from 'webauthn-helper';
+
+const login = useLogin({
+    loginUrl: '/api/login',
+    actionHeader: {
+        'X-TOKEN': 'Secured-TOKEN!!!'
+    },
+    loginOptions: '/api/login/options',
+    optionsHeader: {
+        'X-TOKEN': 'Secured-TOKEN!!!',
+        'X-OTHER-PARAM': '1,2,3,4'
+    }
+});
+```
+
+
 # Support
 
 I bring solutions to your problems and answer your questions.
 
-If you really love that project and the work I have done or if you want I prioritize your issues, then you can help me out for a couple of :beers: or more!
+If you really love that project, and the work I have done or if you want I prioritize your issues, then you can help me out for a couple of :beers: or more!
 
 [Become a sponsor](https://github.com/sponsors/Spomky)
 
