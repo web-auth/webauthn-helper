@@ -1,6 +1,6 @@
 {
   "name": "@web-auth/webauthn-helper",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "JS functions to ease the use of the Spomky-Labs library and Symfony bundle",
   "main": "index.js",
   "scripts": {
