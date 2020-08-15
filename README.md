@@ -40,8 +40,8 @@ register({
 import {useLogin} from '@web-auth/webauthn-helper';
 
 const login = useLogin({
-    loginUrl: '/api/login',
-    loginOptions: '/api/login/options'
+    actionUrl: '/api/login',
+    optionsUrl: '/api/login/options'
 });
 
 login({
