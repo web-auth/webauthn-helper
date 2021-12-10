@@ -2,7 +2,7 @@ import {
     fetchEndpoint,
     preparePublicKeyCredentials,
     preparePublicKeyOptions,
-} from './common';
+} from './common.js';
 
 const useLogin = ({actionUrl = '/login', actionHeader = {}, optionsUrl = '/login/options', optionsHeader = {}, afterOptionsSend=null}) => {
     return async (data) => {
