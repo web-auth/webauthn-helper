@@ -4,6 +4,16 @@ Webauthn Helper
 This package contains helper functions to handle Webauthn registration and authentication.
 It is primarily designed to be used with the Web-Auth Framework from Spomky-Labs.
 
+----
+
+<p align="center">:warning::warning::warning:</p>
+
+**This library is now deprecated and not maintained anymore.
+We highly recommend you to use the new [SimpleWebAuthn Project]([https://github.com/web-token/jwt-framework](https://github.com/MasterKale/SimpleWebAuthn)) as it offers lots of nice features and is fully compatible with the specification.**
+
+<p align="center">:warning::warning::warning:</p>
+
+
 # Installation
 
 With Yarn:
